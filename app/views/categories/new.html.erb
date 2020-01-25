@@ -1,0 +1,10 @@
+<!--submitしたらDBに追加されるだけでOK？
+validates 文字制限なし　presenceのみ-->
+
+<h1>新規カテゴリ作成</h1>
+
+<%= form_for @category, url: categories_path do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.submit %>
+<% end %>
