@@ -9,7 +9,8 @@
           </h2>
         <p class="post-meta">Posted by
           <a href="#">hatarakospa</a>
-          <%= category.created_at %></p>
+          <%= category.created_at %>
+          <%= link_to "編集", edit_category_path(category) %></p>
           <hr>
           <% end %>
       </div>

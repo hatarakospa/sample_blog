@@ -8,12 +8,18 @@
         <p class="post-meta">
           <%= @article.created_at %></p>
           <hr>
-          <%= @article.text %><br>
+          <%= @article.text %>
+            <br>
           <% @article.categories.each do |category| %>
+            <br>
           <%= category.name %>
           <% end %>
-      </div>
-      <hr>
+
+          <%= link_to "編集する", edit_article_path(@article) %>
+          <%= link_to "削除する", article_path(@article), method: :delete, data: {confirm: "本当によろしいですか？"} %>
+          <%= link_to "記事一覧に戻る", articles_path %>
+
+            <hr>
     </div>
   </div>
 </div>
