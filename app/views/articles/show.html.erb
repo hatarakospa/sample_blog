@@ -2,24 +2,20 @@
   <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto">
       <div class="post-preview">
-          <h2 class="post-title">
+        <h2 class="post-title">
           <%= @article.title %>
-          </h2>
+        </h2>
         <p class="post-meta">
           <%= @article.created_at %></p>
           <hr>
-          <%= @article.text %>
-            <br>
-          <% @article.categories.each do |category| %>
-            <br>
+          <%= @article.text %><br />
+          <% @article.categories.each do |category| %><br />
           <%= category.name %>
-          <% end %>
-
-          <%= link_to "編集する", edit_article_path(@article) %>
-          <%= link_to "削除する", article_path(@article), method: :delete, data: {confirm: "本当によろしいですか？"} %>
-          <%= link_to "記事一覧に戻る", articles_path %>
-
-            <hr>
+        <% end %>
+        <%= link_to "編集する", edit_article_path(@article) %>
+        <%= link_to "削除する", article_path(@article), method: :delete, data: {confirm: "本当によろしいですか？"} %>
+        <%= link_to "記事一覧に戻る", articles_path %>
+        <hr>
     </div>
   </div>
 </div>

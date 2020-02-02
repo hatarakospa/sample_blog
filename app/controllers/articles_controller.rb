@@ -21,22 +21,24 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to articles_path
     else
-      render "new"
+      render :new
     end
   end
 
   def update
+    #パラメータ検証必要
     @article = Article.find_by(id: params[:id])
     @article.assign_attributes(article_params)
     if @article.valid?
      @article.save!
      redirect_to articles_path
     else
-      render "edit"
+      render :edit
     end
   end
 
   def show
+    #パラメータ検証必要
     @article = Article.find_by(id: params[:id])
   end
 
@@ -48,8 +50,8 @@ class ArticlesController < ApplicationController
   end
 
   private
- def article_params
-  params.require(:article).permit(:title, :text, category_ids: [])
- end
 
+  def article_params
+    params.require(:article).permit(:title, :text, category_ids: [])
+  end
 end

@@ -5,17 +5,19 @@
       <div class="post-preview">
         <% @categories.each do |category| %>
           <h2 class="post-title">
-          <%= link_to category.name , "/categories/#{category.id}" %>
+            <%= link_to category.name , "/categories/#{category.id}" %>
           </h2>
-        <p class="post-meta">Posted by
-          <a href="#">hatarakospa</a>
-          <%= category.created_at %>
-          <%= link_to "編集", edit_category_path(category) %>
-          <%= link_to "削除", category_path(category), method: :delete, data: {confirm: "本当によろしいですか？"} %></p>
-          <hr>
+          <p class="post-meta">
+            Posted by
+            <a href="#">hatarakospa</a>
+            <%= category.created_at %>
+            <%= link_to "編集", edit_category_path(category) %>
+            <%= link_to "削除", category_path(category), method: :delete, data: {confirm: "本当によろしいですか？"} %></p>
+            <hr>
           <% end %>
       </div>
       <hr>
+
       <!-- Pager -->
       <div class="clearfix">
         <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>

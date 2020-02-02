@@ -1,11 +1,9 @@
 <h1>新規記事作成</h1>
-
-<%= form_for :article, url: articles_path do |f| %>
-
-<% if @article.errors.any? %>
-  <%= @article.errors.count %>個のエラーがあります<br>
-  <% @article.errors.full_messages.each do |msg| %>
-    <%= msg %><br>
+  <%= form_for :article, url: articles_path do |f| %>
+  <% if @article.errors.any? %>
+    <%= @article.errors.count %>個のエラーがあります<br>
+    <% @article.errors.full_messages.each do |msg| %>
+      <%= msg %><br />
     <% end %>
   <% end %>
 
@@ -27,5 +25,4 @@
       <% end %>
   </p>
     <%= f.submit %>
-
     <% end %>

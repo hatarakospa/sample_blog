@@ -1,6 +1,5 @@
 class Article < ApplicationRecord
-    validates :title, presence: true,
-                    length: {minimum: 5}
+    validates :title, presence: true, length: { minimum: 5 }
 
     #未削除ユーザスコープ
     scope :active, -> { where(delete_flg: false) }

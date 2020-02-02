@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  
   def index
     @categories = Category.where(delete_flg: false).order(created_at: :desc)
   end
@@ -23,18 +24,19 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to categories_path
     else
-      render "new"
+      render :new
     end
   end
 
   def update
+    #パラメータ検証必要
     @category = Category.find_by(id: params[:id])
     @category.assign_attributes(category_params)
     if @category.valid?
        @category.save!
        redirect_to categories_path
     else
-      render "edit"
+      render :edit
     end
   end
 
@@ -45,11 +47,9 @@ class CategoriesController < ApplicationController
     redirect_to categories_path
   end
 
-
-
   private
+
   def category_params
     params.require(:category).permit(:name)
   end
-
 end
