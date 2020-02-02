@@ -1,11 +1,9 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all.order(created_at: :desc)
+    @categories = Category.where(delete_flg: false).order(created_at: :desc)
   end
 
   def show
-    #viewで使わない変数は＠つけなくて良い
-    #もっと言うと基本使わない。renderでviewの遷移先を指定できる
     @category = Category.find_by(id: params[:id])
     #has_manyを定義してあるから使える↓
     @articles = @category.articles
@@ -16,6 +14,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    #パラメータ検証必要
     @category = Category.find_by(id: params[:id])
   end
 
@@ -38,6 +37,14 @@ class CategoriesController < ApplicationController
       render "edit"
     end
   end
+
+  def destroy
+    @category = Category.find_by(id: params[:id])
+    @category.delete_flg = true
+    @category.save
+    redirect_to categories_path
+  end
+
 
 
   private

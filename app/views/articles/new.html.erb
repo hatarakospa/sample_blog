@@ -19,7 +19,7 @@
   </p>
   <p>
     <%= f.label :category %>
-    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %><br>
+    <%= f.collection_check_boxes(:category_ids, @categories, :id, :name) do |category| %><br>
       <%= category.label do %>
         <%= category.check_box %>
         <%= category.text %>
