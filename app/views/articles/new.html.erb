@@ -3,7 +3,7 @@
   <% if @article.errors.any? %>
     <%= @article.errors.count %>個のエラーがあります<br>
     <% @article.errors.full_messages.each do |msg| %>
-      <%= msg %><br />
+    <%= msg %><br />
     <% end %>
   <% end %>
 

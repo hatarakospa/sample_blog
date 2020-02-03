@@ -15,13 +15,14 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    #パラメータ検証必要
+    return redirect_to categories_path if params[:id].to_i <= 0 
     @category = Category.find_by(id: params[:id])
   end
 
   def create
     @category = Category.new(category_params)
-    if @category.save
+    if @category.valid?
+      @category.save?
       redirect_to categories_path
     else
       render :new
@@ -29,7 +30,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    #パラメータ検証必要
+    return redirect_to edit_category_path if params[:id].to_i <= 0
     @category = Category.find_by(id: params[:id])
     @category.assign_attributes(category_params)
     if @category.valid?

@@ -10,7 +10,6 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    # パラメータ検証必要
     return redirect_to articles_path if params[:id].to_i <= 0
     @article = Article.find_by(id: params[:id])
     @categories = Category.where(delete_flg: false).order(created_at: :desc)
@@ -18,7 +17,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    if @article.save
+    if @article.valid?
+      @article.save!
       redirect_to articles_path
     else
       render :new
@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    #パラメータ検証必要
+    return redirect_to edit_article_path if params[:id].to_i <= 0
     @article = Article.find_by(id: params[:id])
     @article.assign_attributes(article_params)
     if @article.valid?
@@ -37,8 +37,8 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def show
-    #パラメータ検証必要
+  def show  
+    return redirect_to articles_path if params[:id].to_i <= 0
     @article = Article.find_by(id: params[:id])
   end
 
