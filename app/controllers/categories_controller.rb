@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.valid?
-      @category.save?
+      @category.save!
       redirect_to categories_path
     else
       render :new
@@ -44,7 +44,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find_by(id: params[:id])
     @category.delete_flg = true
-    @category.save
+    @category.save!
     redirect_to categories_path
   end
 

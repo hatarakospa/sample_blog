@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def show  
+  def show
     return redirect_to articles_path if params[:id].to_i <= 0
     @article = Article.find_by(id: params[:id])
   end

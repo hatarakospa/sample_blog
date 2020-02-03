@@ -1,6 +1,6 @@
 <h1>記事の更新</h1>
   <%= form_for :article, url: article_path, method: :patch do |f| %>
-  <% if @article.errors.any? %>
+    <% if @article.errors.any? %>
     <%= @article.errors.count %>個のエラーがあります<br />
     <% @article.errors.full_messages.each do |msg| %>
     <%= msg %><br />
@@ -17,7 +17,7 @@
   </p>
   <p>
     <%= f.label :category %>
-    <%= f.collection_check_boxes(:category_ids, @categories, :id, :name) do |category| %><br />
+      <%= f.collection_check_boxes(:category_ids, @categories, :id, :name) do |category| %><br />
       <%= category.label do %>
       <%= category.check_box %>
       <%= category.text %>
