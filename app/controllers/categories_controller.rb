@@ -5,9 +5,11 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find_by(id: params[:id])
-    #has_manyを定義してあるから使える↓
-    @articles = @category.articles
+    category = Category.find_by(id: params[:id])
+    #modelでhas_many定義してるのでarticles使える
+    articles = category.articles
+    #これでいいのだろうか
+    @articles = articles.where(delete_flg: false)
   end
 
   def new
@@ -43,9 +45,10 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find_by(id: params[:id])
-    @category.delete_flg = true
-    @category.save!
-    redirect_to categories_path
+    if @category.delete_flg = true
+      @category.save!
+      redirect_to categories_path, success: "カテゴリを削除しました"
+    end
   end
 
   private

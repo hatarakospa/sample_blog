@@ -44,8 +44,13 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find_by(id: params[:id])
-    @article.delete_flg = true
-    @article.save!
+    if @article.present?
+      @article.delete_flg = true
+      @article.save!
+      flash[:success] = "投稿を削除しました"
+    else
+      flash[:error] = "投稿の削除に失敗しました"
+    end
     redirect_to articles_path
   end
 
