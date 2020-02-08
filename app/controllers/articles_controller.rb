@@ -39,6 +39,7 @@ class ArticlesController < ApplicationController
 
   def show
     return redirect_to articles_path if params[:id].to_i <= 0
+    return redirect_to articles_path if Article.find_by(id: params[:id]).delete_flg
     @article = Article.find_by(id: params[:id])
   end
 
@@ -49,9 +50,11 @@ class ArticlesController < ApplicationController
       @article.save!
       flash[:success] = "投稿を削除しました"
     else
-      flash[:error] = "投稿の削除に失敗しました"
+      flash[:error] = "投稿がありません"
     end
-    redirect_to articles_path
+    @articles = Article.where(delete_flg: false).order(created_at: :desc)
+    render :index
+    #redirect_to articles_path
   end
 
   private

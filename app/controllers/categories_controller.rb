@@ -8,7 +8,6 @@ class CategoriesController < ApplicationController
     category = Category.find_by(id: params[:id])
     #modelでhas_many定義してるのでarticles使える
     articles = category.articles
-    #これでいいのだろうか
     @articles = articles.where(delete_flg: false)
   end
 
@@ -45,10 +44,16 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find_by(id: params[:id])
-    if @category.delete_flg = true
+    if @category.present? 
+      @category.delete_flg = true
       @category.save!
-      redirect_to categories_path, success: "カテゴリを削除しました"
+      flash[:success] = "カテゴリを削除しました"
+    else
+      flash[:error] = "カテゴリがありません"
     end
+    @categories = Category.where(delete_flg: false).order(created_at: :desc)
+    render :index
+    #redirect_to categories_path
   end
 
   private

@@ -6,6 +6,8 @@
           <div class="flash">
             <%= flash[:success] %>
           </div>
+        <% else %>
+            <%= flash[:error] %>
         <% end %>
     
         <div class="post-preview">
