@@ -53,12 +53,11 @@ class CategoriesController < ApplicationController
     end
     @categories = Category.where(delete_flg: false).order(created_at: :desc)
     render :index
-    #redirect_to categories_path
   end
 
   private
 
   def category_params
-    params.require(:category).permit(:name)
+    params.fetch(:category, {}).permit(:name)
   end
 end

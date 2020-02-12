@@ -54,12 +54,11 @@ class ArticlesController < ApplicationController
     end
     @articles = Article.where(delete_flg: false).order(created_at: :desc)
     render :index
-    #redirect_to articles_path
   end
 
   private
 
   def article_params
-    params.require(:article).permit(:title, :text, category_ids: [])
+    params.fetch(:article, {}).permit(:title, :text, category_ids: [])
   end
 end
