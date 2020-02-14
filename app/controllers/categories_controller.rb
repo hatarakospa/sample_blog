@@ -51,8 +51,7 @@ class CategoriesController < ApplicationController
     else
       flash[:error] = "カテゴリがありません"
     end
-    @categories = Category.where(delete_flg: false).order(created_at: :desc)
-    render :index
+    redirect_to categories_path
   end
 
   private

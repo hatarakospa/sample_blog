@@ -52,8 +52,7 @@ class ArticlesController < ApplicationController
     else
       flash[:error] = "投稿がありません"
     end
-    @articles = Article.where(delete_flg: false).order(created_at: :desc)
-    render :index
+    redirect_to articles_path
   end
 
   private
