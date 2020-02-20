@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    category = Category.find_by(id: params[:id])
+    category = Category.find_by(id: params[:id], delete_flg: false) if params[:id].to_i > 0
     #modelでhas_many定義してるのでarticles使える
     articles = category.articles
     @articles = articles.where(delete_flg: false)
@@ -16,8 +16,8 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    return redirect_to categories_path if params[:id].to_i <= 0 
-    @category = Category.find_by(id: params[:id])
+    @category = Category.find_by(id: params[:id]) if params[:id].to_i > 0
+    return redirect_to categories_path if @category.blank?
   end
 
   def create
@@ -31,8 +31,8 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    return redirect_to edit_category_path if params[:id].to_i <= 0
-    @category = Category.find_by(id: params[:id])
+    @category = Category.find_by(params[:id], delete_flg: false) if params[:id].to_i > 0
+    return redirect_to categories_path if @category.blank?
     @category.assign_attributes(category_params)
     if @category.valid?
        @category.save!
@@ -43,7 +43,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find_by(id: params[:id])
+    @category = Category.find_by(id: params[:id]) if params[:id].to_i > 0
     if @category.present? 
       @category.delete_flg = true
       @category.save!
