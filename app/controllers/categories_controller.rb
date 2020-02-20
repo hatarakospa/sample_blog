@@ -31,7 +31,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find_by(params[:id], delete_flg: false) if params[:id].to_i > 0
+    @category = Category.find_by(id: params[:id], delete_flg: false) if params[:id].to_i > 0
     return redirect_to categories_path if @category.blank?
     @category.assign_attributes(category_params)
     if @category.valid?
