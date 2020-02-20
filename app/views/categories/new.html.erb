@@ -1,6 +1,8 @@
 <h1>新規カテゴリ作成</h1>
   <%= form_for @category, url: categories_path do |f| %>
+  <p>
     <%= f.label :name %>
-    <%= f.text_field :name %><br />
-    <%= f.submit %>
+    <%= f.text_field :name %>
+  </p>
+  <%= f.submit %>
   <% end %>

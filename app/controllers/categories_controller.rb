@@ -35,8 +35,8 @@ class CategoriesController < ApplicationController
     return redirect_to categories_path if @category.blank?
     @category.assign_attributes(category_params)
     if @category.valid?
-       @category.save!
-       redirect_to categories_path
+      @category.save!
+      redirect_to categories_path
     else
       render :edit
     end

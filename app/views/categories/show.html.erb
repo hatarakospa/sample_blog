@@ -6,7 +6,8 @@
             カテゴリ別記事一覧
           </h2>
           <% @articles.each do |article| %>
-          <%= link_to article.title , "/articles/#{article.id}" %><br />
+          <%= link_to article.title , "/articles/#{article.id}" %>
+          <br />
           <% end %>
       </div>
       <hr>
