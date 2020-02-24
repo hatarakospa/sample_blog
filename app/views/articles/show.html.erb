@@ -6,7 +6,7 @@
           <%= @article.title %>
         </h2>
         <p class="post-meta">
-          <%= @article.created_at %>
+          <%= @article.created_at.in_time_zone('Tokyo') %>
         </p>
         <hr>
         <%= @article.text %>

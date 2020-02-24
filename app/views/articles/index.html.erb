@@ -19,7 +19,7 @@
             <p class="post-meta">
               Posted by
               <a href="#">hatarakospa</a>
-              <%= article.created_at %>
+              <%= article.created_at.in_time_zone('Tokyo') %>
             </p>
             <hr>
           <% end %>
