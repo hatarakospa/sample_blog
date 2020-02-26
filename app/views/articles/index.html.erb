@@ -17,9 +17,12 @@
             </h2>
 
             <p class="post-meta">
-              Posted by
-              <a href="#">hatarakospa</a>
-              <%= article.created_at.in_time_zone('Tokyo') %>
+            Category:
+              <% article.categories.each do |category| %>
+                <%= link_to category.name , "/categories/#{category.id}" %>
+              <% end %>
+
+              <%= article.created_at.in_time_zone('Tokyo') %> 
             </p>
             <hr>
           <% end %>
