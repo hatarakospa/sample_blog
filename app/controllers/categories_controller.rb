@@ -44,14 +44,17 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category = Category.find_by(id: params[:id]) if params[:id].to_i > 0
-    if @category.present? 
+    return redirect_to categories_path if @category.blank?
+      if @category.valid?(:category_delete) 
       @category.delete_flg = true
-      @category.save!
+      @category.save!(context: :category_delete) 
       flash[:success] = "カテゴリを削除しました"
+      redirect_to categories_path
     else
-      flash[:error] = "カテゴリがありません"
-    end
-    redirect_to categories_path
+      #これだとバリデーションエラー出ない
+      @categories = Category.where(delete_flg: false).order(created_at: :desc)
+      render :index
+      end
   end
 
   private

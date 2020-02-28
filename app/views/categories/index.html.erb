@@ -8,10 +8,16 @@
         </div>
       <% else %>
         <%= flash[:error] %>
-    <% end %>
+      <% end %>
+
+      <% @categories.each do |category| %>
+        <% if category.errors.any? %>
+          <% category.errors.full_messages.each do |msg| %>
+            <%= msg %>
+          <% end %>
+        <% end %>
 
       <div class="post-preview">
-        <% @categories.each do |category| %>
           <h2 class="post-title">
             <%= link_to category.name , "/categories/#{category.id}" %>
           </h2>
@@ -20,7 +26,7 @@
             <%= link_to "削除", category_path(category), method: :delete, data: {confirm: "本当によろしいですか？"} %>
           </p>
           <hr>
-          <% end %>
+      <% end %>
       </div>
       <hr>
 
