@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="post-preview">
+        <h2 class="post-title">
+          <%= @article.title %>
+        </h2>
+        <p class="post-meta">
+          <%= @article.created_at.in_time_zone('Tokyo') %>
+          <br />
+          <% @article.categories.each do |category| %>
+          <%= category.name %>
+        </p>
+        <hr>
+        <%= @article.text %>
+        <hr>
+        <br />
+        <% end %>
+        <%= link_to "編集する", edit_article_path(@article) %>
+        <%= link_to "削除する", article_path(@article), method: :delete, data: {confirm: "本当によろしいですか？"} %>
+        <%= link_to "記事一覧に戻る", articles_path %>
+    </div>
+  </div>
+</div>

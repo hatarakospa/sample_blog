@@ -1,0 +1,38 @@
+<!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <% if flash[:success] %>
+          <div class="flash">
+            <%= flash[:success] %>
+          </div>
+        <% else %>
+            <%= flash[:error] %>
+        <% end %>
+    
+        <div class="post-preview">
+          <% @articles.each do |article| %>
+            <h2 class="post-title">
+              <%= link_to article.title , "/articles/#{article.id}" %>
+            </h2>
+
+            <p class="post-meta">
+            Category:
+              <% article.categories.each do |category| %>
+                <%= link_to category.name , "/categories/#{category.id}" %>
+              <% end %>
+
+              <%= article.created_at.in_time_zone('Tokyo') %> 
+            </p>
+            <hr>
+          <% end %>
+        </div>
+        <hr>
+        
+        <!-- Pager -->
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>

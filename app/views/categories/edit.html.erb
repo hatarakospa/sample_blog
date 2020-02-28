@@ -1,0 +1,10 @@
+<div class="mx-auto" style="width: 400px;">
+<h1>カテゴリの更新</h1>
+  <%= form_for :category, url: category_path, method: :patch do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <%= f.submit %>
+  <% end %>
+</div>
